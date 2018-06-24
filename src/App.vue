@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <h1>CoachBot Test</h1>
+    <img class="item-img" src="./assets/coaching.jpg">
     <router-view/>
   </div>
 </template>
@@ -19,5 +20,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.item-img {
+  /* width: 150px;
+  height: auto; */
+  width: 50%;
+  height: auto;
 }
 </style>

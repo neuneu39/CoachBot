@@ -4,8 +4,10 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   res.json({
-    message: "Hello World",
-    log: "logs" 
+    weather: "いい天気ですね",
+    daikichi: "今日はいいことがありますよ",
+    cyukichi: "きっといいことがあります",
+    shokichi: "大変かもしれないけど頑張って"
   },
 );
 });
