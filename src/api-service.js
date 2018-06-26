@@ -4,7 +4,7 @@ function omikuji () {
   return Math.floor(Math.random() * 3)
 }
 export default {
-  getItems: () => {
+  getReply: () => {
     const options = {
       method: 'GET'
     }

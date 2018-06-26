@@ -3,7 +3,7 @@
   <div class="input-message">
     <h2>input message</h2>
     <!-- submitイベントによるページのリロード防止 -->
-    <form v-on:submit.prevent="sendMessage">
+    <form v-on:submit.prevent="sendMessage" method="post">
       <textarea v-model="messageText" placeholder="write text" />
       <button type="submit">OK</button>
     </form>
@@ -35,7 +35,7 @@ export default {
       }
     },
     getItems: function (answer) {
-      apiService.getItems()
+      apiService.getReply()
         .then(message => {
           this.setMessage(message[answer])
           console.log(message)
