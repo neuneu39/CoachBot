@@ -27,9 +27,15 @@ export default {
     }
   },
   methods: {
+    // postMessage: function () {
+    //   if (this.messageText !== '') {
+    //   }
+    // },
     sendMessage: function () {
       if (this.messageText !== '') {
         this.setKeyMessage()
+        console.log('こんにちは')
+        console.log('実行', apiService.postMessage({message: `${this.messageText}`}))
       } else {
         this.answerText = normalMessage
       }

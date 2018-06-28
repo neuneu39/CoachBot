@@ -15,6 +15,10 @@ app.listen(config.port, () =>
   console.info(`server started on port ${config.port}`),
 );
 
+app.post('/api/answer', (req, res) => {
+  console.log('リクエストは', req.body)  
+});
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Something broke!' });
