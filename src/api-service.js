@@ -3,8 +3,6 @@ export default {
     const options = {
       method: 'POST'
     }
-    // let num = omikuji()
-    // let word = WordMap[num]
     return fetch('/api/answer', options)
       .then(response => response.json())
       .then((json) => {

@@ -14,7 +14,6 @@ const router = express.Router();
 // });
 
 router.post('/', (req, res) => {
-  console.log('リクエストはpostです', req.body);
   if (req.body.message == '天気')　{
     return res.json({
       message: 'いい天気ですね',
@@ -23,8 +22,7 @@ router.post('/', (req, res) => {
     return res.json({
       message: 'なんですか？',
     })
-  }
-  
+  }  
 });
 
 module.exports = router;
