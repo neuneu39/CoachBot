@@ -11,13 +11,16 @@ app.use(bodyParser.urlencoded( { extended: true }))
 
 
 app.use('/api/answer', answerRoute);
+
 app.listen(config.port, () => 
   console.info(`server started on port ${config.port}`),
 );
 
-app.post('/api/answer', (req, res) => {
-  console.log('リクエストは', req.body)  
-});
+// app.post('/api/answer', (req, res) => {
+//   console.log('リクエストは', req.body)
+  
+//   //res.send('POST request to the answer')
+// });
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

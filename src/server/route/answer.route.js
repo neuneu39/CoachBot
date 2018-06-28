@@ -12,27 +12,19 @@ const router = express.Router();
 //   },
 // );
 // });
-const WordMap = ['daikichi', 'cyukichi', 'shokichi']
-
-function omikuji () {
-  return Math.floor(Math.random() * 3)
-}
 
 router.post('/', (req, res) => {
   console.log('リクエストはpostです', req.body);
-  if (req.message == '天気') {
-    res.json({
+  if (req.body.message == '天気')　{
+    return res.json({
       message: 'いい天気ですね',
     })
-  } else if (req.message == 'おみくじ') {
-      req.json({
-        message: 'おみくじですね'
-      })
-    } else {
-      req.json({
-        message: 'はずれ'
-      })
-    }  
+  } else {
+    return res.json({
+      message: 'なんですか？',
+    })
+  }
+  
 });
 
 module.exports = router;

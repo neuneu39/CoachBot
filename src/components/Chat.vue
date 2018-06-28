@@ -27,40 +27,36 @@ export default {
     }
   },
   methods: {
-    // postMessage: function () {
-    //   if (this.messageText !== '') {
-    //   }
-    // },
     sendMessage: function () {
       if (this.messageText !== '') {
-        this.setKeyMessage()
-        console.log('こんにちは')
-        console.log('実行', apiService.postMessage({message: `${this.messageText}`}))
+        apiService.postMessage(this.messageText)
+          .then(json => {
+            this.answerText = json.message
+          })
       } else {
         this.answerText = normalMessage
       }
-    },
-    getItems: function (answer) {
-      apiService.getReply()
-        .then(message => {
-          this.setMessage(message[answer])
-          console.log(message)
-        })
-    },
-    setMessage: function (message) {
-      this.answerText = message
-    },
-    setNormalMessage: function (message) {
-      this.answerText = `${message}なんですね`
-    },
-    setKeyMessage: function () {
-      if (this.messageText === '天気') { this.getItems('weather') }
-      if (this.messageText === 'おみくじ') {
-        this.getItems('message')
-      } else {
-        this.setNormalMessage(this.messageText)
-      }
     }
+    // getMessages: function (answer) {
+    //   apiService.getReply()
+    //     .then(message => {
+    //       this.setMessage(message[answer])
+    //       console.log(message)
+    //     })
+    // },
+    // setMessage: function (message) {
+    //   this.answerText = message
+    // },
+    // setNormalMessage: function (message) {
+    //   this.answerText = `${message}なんですね`
+    // },
+    // setKeyMessage: function () {
+    //   if (this.messageText !== '') {
+    //     this.getMessages('message')
+    //   } else {
+    //     this.setNormalMessage(this.messageText)
+    //   }
+    // }
   }
 }
 </script>
