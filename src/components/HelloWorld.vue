@@ -2,6 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
+    <p>Go to the <router-link to="/chat">Chatbot</router-link></p>
     <ul>
       <li>
         <a
