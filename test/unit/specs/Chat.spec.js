@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import Chat from '@/components/Chat'
 import { mount, RouterLinkStub } from '@vue/test-utils'
-import VueRouter from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
-
 
 describe('Chat.vue', () => {
   it('render the correnct message', () => {
@@ -13,11 +11,11 @@ describe('Chat.vue', () => {
     const vm = new Vue(Chat).$mount()
     expect(vm.messageText).toBe('')
     expect(vm.answerText).toBe('')
-  }),
+  })
   it('should render correct contents', () => {
     const vm1 = mount(Chat)
     expect(vm1.is(Chat)).toBe(true)
-  }),
+  })
   it('should link correct', () => {
     // const localVue = createLocalVue()
     // localVue.use(VueRouter)
@@ -34,5 +32,4 @@ describe('Chat.vue', () => {
     })
     expect(wrapper.find(RouterLinkStub).props().to).toBe('/')
   })
-
 })

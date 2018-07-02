@@ -6,9 +6,7 @@ export default {
     return fetch('/api/answer', options)
       .then(response => response.json())
       .then((json) => {
-        return {
-          message: json.message
-        }
+        return { 'message': json.message }
       })
   },
   postMessage: (message) => {
