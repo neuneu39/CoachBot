@@ -5,7 +5,7 @@ const answerRoute = require('./route/answer.route')
 
 const app = express()
 
-// bocy-parser指定
+// body-parser指定
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
