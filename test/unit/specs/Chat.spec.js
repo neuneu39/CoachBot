@@ -10,7 +10,8 @@ describe('Chat.vue', () => {
     // expect(vm.$el.)
     const vm = new Vue(Chat).$mount()
     expect(vm.messageText).toBe('')
-    expect(vm.answerText).toBe('')
+    expect(vm.answerText).toEqual([])
+
   })
   it('should render correct contents', () => {
     const vm1 = mount(Chat)
