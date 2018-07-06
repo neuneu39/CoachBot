@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require('express')
 
-const router = express.Router();
+const router = express.Router()
 
 // router.get('/', (req, res) => {
 //   console.log("リクエストはgetです",req.body);
@@ -14,15 +14,15 @@ const router = express.Router();
 // });
 
 router.post('/', (req, res) => {
-  if (req.body.message == '天気')　{
+  if (req.body.message === '天気') {
     return res.json({
-      message: 'いい天気ですね',
+      message: 'いい天気ですね'
     })
   } else {
     return res.json({
-      message: 'なんですか？',
+      message: 'なんですか？'
     })
-  }  
-});
+  }
+})
 
-module.exports = router;
+module.exports = router

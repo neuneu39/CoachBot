@@ -1,16 +1,4 @@
 export default {
-  getReply: () => {
-    const options = {
-      method: 'POST'
-    }
-    return fetch('/api/answer', options)
-      .then(response => response.json())
-      .then((json) => {
-        return {
-          message: json.message
-        }
-      })
-  },
   postMessage: (message) => {
     const obj = {message: `${message}`}
     const method = 'POST'

@@ -3,3 +3,5 @@
 /dist/
 /*.js
 /test/unit/coverage/
+/node_modules/
+/src/server/node_modules/
