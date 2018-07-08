@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Chat from '@/components/Chat'
 import { mount, RouterLinkStub } from '@vue/test-utils'
-// import HelloWorld from '@/components/HelloWorld'
 
 describe('Chat.vue', () => {
   it('render the correnct message', () => {
@@ -10,26 +9,26 @@ describe('Chat.vue', () => {
     // expect(vm.$el.)
     const vm = new Vue(Chat).$mount()
     expect(vm.messageText).toBe('')
-    expect(vm.answerText).toBe('')
+    expect(vm.answerText).toEqual([])
   })
   it('should render correct contents', () => {
     const vm1 = mount(Chat)
     expect(vm1.is(Chat)).toBe(true)
   })
+  it('should render input message', () => {
+    const wrapper = mount(Chat)
+    wrapper.messageText = 'hello'
+    wrapper.find('button').trigger('submit')
+    expect(wrapper.vm.ids).toEqual(1)
+    expect(wrapper.vm.answerText.length).toEqual(1)
+  })
   it('should link correct', () => {
-    // const localVue = createLocalVue()
-    // localVue.use(VueRouter)
-    // const router = new VueRouter()
-
-    // shallowMount(Chat, {
-    //   localVue,
-    //   router
-    // })
     const wrapper = mount(Chat, {
       stubs: {
         RouterLink: RouterLinkStub
       }
     })
+    console.log(wrapper.find(RouterLinkStub).props())
     expect(wrapper.find(RouterLinkStub).props().to).toBe('/')
   })
 })
