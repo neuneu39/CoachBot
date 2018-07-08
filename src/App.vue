@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <h1>CoachBot Test</h1>
-    <img class="item-img" src="./assets/coaching.jpg">
+    <!-- <h1>CoachBot Test</h1>
+    <img class="item-img" src="./assets/coaching.jpg"> -->
     <router-view/>
   </div>
 </template>
 
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
 <script>
 export default {
   name: 'App'

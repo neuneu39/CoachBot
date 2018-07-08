@@ -1,5 +1,7 @@
 <template>
 <div class="message">
+  <h1>CoachBot Test</h1>
+  <img class="item-img" src="../assets/coaching.jpg">
   <div class="input-message">
     <h2>input message</h2>
     <!-- submitイベントによるページのリロード防止 -->
