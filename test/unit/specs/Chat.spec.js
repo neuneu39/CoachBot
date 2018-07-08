@@ -28,7 +28,6 @@ describe('Chat.vue', () => {
         RouterLink: RouterLinkStub
       }
     })
-    console.log(wrapper.find(RouterLinkStub).props())
     expect(wrapper.find(RouterLinkStub).props().to).toBe('/')
   })
 })
