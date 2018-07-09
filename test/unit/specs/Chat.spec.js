@@ -19,7 +19,6 @@ describe('Chat.vue', () => {
 
     wrapper.vm.messageText = 'hello'
     wrapper.find('button').trigger('submit')
-    console.log('answer=', wrapper.vm.answerText[0].message)
     expect(wrapper.vm.ids).toEqual(1) // 入力とリプライの2つ
     expect(wrapper.vm.answerText.length).toEqual(1) // リプライは1つ
 
