@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Chat from '@/components/Chat'
-import { mount, RouterLinkStub } from '@vue/test-utils'
+import { mount, RouterLinkStub, shallowMount, createLocalVue } from '@vue/test-utils'
+import VueRouter from 'vue-router'
+import { wrap } from 'module';
+
 
 describe('Chat.vue', () => {
   it('render the correnct message', () => {
@@ -12,40 +15,43 @@ describe('Chat.vue', () => {
     const vm1 = mount(Chat)
     expect(vm1.is(Chat)).toBe(true)
   })
-  it('should render input message', () => {
+  it('should render input message', (done) => {
     const wrapper = mount(Chat)
     const text = {message: "いい天気ですね"}
     fetch.mockResponseOnce(JSON.stringify(text))
 
     wrapper.vm.messageText = 'hello'
     wrapper.find('button').trigger('submit')
-    expect(wrapper.vm.ids).toEqual(1) // 入力とリプライの2つ
-    expect(wrapper.vm.answerText.length).toEqual(1) // リプライは1つ
+    expect(wrapper.vm.ids).toEqual(1)
+    expect(wrapper.vm.answerText.length).toEqual(1)
 
   //  サーバーのレスポンスを待ってから 
-    jest.useFakeTimers()
-    setTimeout( () => {
-      expect(wrapper.vm.ids).toEqual(1)　// 2を期待
-      expect(wrapper.vm.answerText.length).toEqual(1) // 2を期待      
-    }, 5000)
-    jest.runAllTimers();
- 
+    setTimeout(() => {
+      expect(wrapper.vm.ids).toEqual(2)
+      expect(wrapper.vm.answerText.length).toEqual(2)
+      done()
+    }, 1000)
   })
-  it('should return an error message', () => {
+  it('should return an error message', (done) => {
+    fetch.mockReject( new Error('internal server error'))
     const wrapper = mount(Chat)
     wrapper.vm.messageText = 'hello'
     wrapper.find('button').trigger('submit')
 
     expect(wrapper.vm.ids).toEqual(1)
     expect(wrapper.vm.answerText.length).toEqual(1)
-   // エラーになるため一度コメントアウト
-   // expect(wrapper.vm.errorMessage).toBe('サーバーに問題が発生しました')
-    
+
+    setTimeout(() => {
+      expect(wrapper.vm.errorMessage).toBe('サーバーに問題が発生しました')
+      done()
+    }, 1000)
   })
-  it('should link correct', () => {
+  it('link shold be / ', () => {
+    Vue.use( VueRouter );
+    
     const wrapper = mount(Chat, {
       stubs: {
-        RouterLink: RouterLinkStub
+        'router-link': RouterLinkStub
       }
     })
     expect(wrapper.find(RouterLinkStub).props().to).toBe('/')

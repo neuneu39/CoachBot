@@ -24,7 +24,9 @@
       <p>{{ text.message }}</p>
     </div>
   </div>
-  <p>{{ errorMessage }}</p>
+  <div v-if=errorMessage>
+    <p>{{ errorMessage }}</p>
+  </div>
   <p>Back to the <router-link to="/">Home</router-link></p>
 </div>
 </template>
