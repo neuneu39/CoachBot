@@ -47,7 +47,7 @@ describe('Chat.vue', () => {
     }, 1000)
   })
   it('link shold be / ', () => {
-    Vue.use( VueRouter );
+    Vue.use(VueRouter);
     
     const wrapper = mount(Chat, {
       stubs: {
