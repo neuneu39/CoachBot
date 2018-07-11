@@ -9,13 +9,5 @@ export default {
     }
     return fetch('./api/answer', {method, headers, body})
       .then((res) => res.json())
-      .catch(err => {
-        console.log('エラー', err.name)
-      })
-      // if (!res.ok) {
-      //   throw new Error('Error in Post /api/answer')
-      // } else {
-      // res.json()
-      // }
   }
 }

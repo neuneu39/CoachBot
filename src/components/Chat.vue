@@ -24,6 +24,9 @@
       <p>{{ text.message }}</p>
     </div>
   </div>
+  <div v-if=errorMessage>
+    <p>{{ errorMessage }}</p>
+  </div>
   <p>Back to the <router-link to="/">Home</router-link></p>
 </div>
 </template>
@@ -37,20 +40,26 @@ export default {
     return {
       messageText: '',
       answerText: [],
-      ids: 0
+      ids: 0,
+      errorMessage: ''
     }
   },
   methods: {
     sendMessage: function () {
-      this.ids++
+      this.resetErrorMessage()
       if (this.messageText !== '') {
         this.answerText.push(this.setMessage(this.ids++, this.messageText, false))
         apiService.postMessage(this.messageText)
           .then(json => {
-            this.answerText.push(this.setMessage(this.ids, json.message))
+            this.answerText.push(this.setMessage(this.ids++, json.message))
+          })
+          .catch(e => {
+            console.log('error response from apiService e = ', e)
+            const eMessage = 'サーバーに問題が発生しました'
+            this.setErrorMessage(eMessage)
           })
       } else {
-        this.answerText.push(this.setMessage(this.ids, normalMessage))
+        this.answerText.push(this.setMessage(this.ids++, normalMessage))
       }
     },
     setMessage: function (idNum, text, Flag = true) {
@@ -59,6 +68,12 @@ export default {
         message: text,
         botFlag: Flag
       }
+    },
+    setErrorMessage: function (eMessage) {
+      this.errorMessage = eMessage
+    },
+    resetErrorMessage: function () {
+      this.errorMessage = ''
     }
   }
 }
