@@ -1,23 +1,23 @@
 import Vue from 'vue'
-import Chat from '@/components/Chat'
-import { mount, RouterLinkStub, shallowMount, createLocalVue } from '@vue/test-utils'
+import { RouterLinkStub, mount, shallowMount } from '@vue/test-utils'
 import VueRouter from 'vue-router'
-import { wrap } from 'module';
+import Chat from '@/components/Chat'
 
+Vue.use(VueRouter)
 
 describe('Chat.vue', () => {
   it('render the correnct message', () => {
-    const vm = new Vue(Chat).$mount()
-    expect(vm.messageText).toBe('')
-    expect(vm.answerText).toEqual([])
+    const wrapper = shallowMount(Chat)
+    expect(wrapper.vm.messageText).toBe('')
+    expect(wrapper.vm.answerText).toEqual([])
   })
   it('should render correct contents', () => {
-    const vm1 = mount(Chat)
-    expect(vm1.is(Chat)).toBe(true)
+    const wrapper = shallowMount(Chat)
+    expect(wrapper.is(Chat)).toBe(true)
   })
   it('should render input message', (done) => {
-    const wrapper = mount(Chat)
-    const text = {message: "いい天気ですね"}
+    const wrapper = shallowMount(Chat)
+    const text = {message: 'いい天気ですね'}
     fetch.mockResponseOnce(JSON.stringify(text))
 
     wrapper.vm.messageText = 'hello'
@@ -25,7 +25,7 @@ describe('Chat.vue', () => {
     expect(wrapper.vm.ids).toEqual(1)
     expect(wrapper.vm.answerText.length).toEqual(1)
 
-  //  サーバーのレスポンスを待ってから 
+    // サーバーのレスポンスを待ってから
     setTimeout(() => {
       expect(wrapper.vm.ids).toEqual(2)
       expect(wrapper.vm.answerText.length).toEqual(2)
@@ -33,8 +33,8 @@ describe('Chat.vue', () => {
     }, 1000)
   })
   it('should return an error message', (done) => {
-    fetch.mockReject( new Error('internal server error'))
-    const wrapper = mount(Chat)
+    fetch.mockReject(new Error('internal server error'))
+    const wrapper = shallowMount(Chat)
     wrapper.vm.messageText = 'hello'
     wrapper.find('button').trigger('submit')
 
@@ -46,14 +46,9 @@ describe('Chat.vue', () => {
       done()
     }, 1000)
   })
+
   it('link shold be / ', () => {
-    Vue.use(VueRouter);
-    
-    const wrapper = mount(Chat, {
-      stubs: {
-        'router-link': RouterLinkStub
-      }
-    })
+    const wrapper = mount(Chat, { stubs: { RouterLink: RouterLinkStub } })
     expect(wrapper.find(RouterLinkStub).props().to).toBe('/')
   })
 })
