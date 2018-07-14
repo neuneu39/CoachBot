@@ -1,13 +1,27 @@
 export default {
+  // postMessage: (message) => {
+  //   const obj = {message: `${message}`}
+  //   const method = 'POST'
+  //   const body = JSON.stringify(obj)
+  //   const headers = {
+  //     'Accept': 'application/json',
+  //     'Content-Type': 'application/json'
+  //   }
+  //   return fetch('./api/answer', {method, headers, body})
+  //     .then((res) => res.json())
+  // }
   postMessage: (message) => {
-    const obj = {message: `${message}`}
+    const body = new FormData()
+    body.append('apikey', 'DZZE8FLShC02Apnk5ixbzZdJnoOQ4J0j')
+    body.append('query', `${message}`)
     const method = 'POST'
-    const body = JSON.stringify(obj)
-    const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-    return fetch('./api/answer', {method, headers, body})
-      .then((res) => res.json())
+
+    return fetch('https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk', {method, body})
+      .then(response => response.json())
+      .then(data => {
+        return {
+          message: `${data.results[0].reply}`
+        }
+      })
   }
 }
