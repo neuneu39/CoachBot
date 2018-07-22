@@ -1,3 +1,5 @@
+import { ApiKeys } from './server/key-files.js'
+
 export default {
   // postMessage: (message) => {
   //   const obj = {message: `${message}`}
@@ -12,7 +14,7 @@ export default {
   // }
   postMessage: (message) => {
     const body = new FormData()
-    body.append('apikey', 'DZZE8FLShC02Apnk5ixbzZdJnoOQ4J0j')
+    body.append('apikey', ApiKeys.talkApi)
     body.append('query', `${message}`)
     const method = 'POST'
 
