@@ -1,27 +1,22 @@
+const FormData = require('form-data');
+const ApiKeys = require('../key-files')
+const fetch = require('node-fetch')
 const express = require('express')
 
 const router = express.Router()
 
-// router.get('/', (req, res) => {
-//   console.log("リクエストはgetです",req.body);
-//   res.json({
-//     weather: "いい天気ですね",
-//     daikichi: "今日はいいことがありますよ",
-//     cyukichi: "きっといいことがあります",
-//     shokichi: "大変かもしれないけど頑張って"
-//   },
-// );
-// });
-
 router.post('/', (req, res) => {
-  if (req.body.message === '天気') {
-    return res.json({
-      message: 'いい天気ですね'
-    })
-  } else {
-    return res.json({
-      message: 'なんですか？'
-    })
+  if (req.body.message !== '') {
+    const body = new FormData()
+    body.append('query', req.body.message)
+    body.append('apikey', ApiKeys.talkApi)  
+    
+    const method = 'POST'
+    return fetch('https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk', {method, body})
+      .then(response => response.json())
+      .then(json => {
+        res.json(json.results[0].reply)
+      })
   }
 })
 
