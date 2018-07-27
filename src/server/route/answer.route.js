@@ -6,7 +6,6 @@ const express = require('express')
 const router = express.Router()
 
 router.post('/', (req, res) => {
-
   if (req.body.message !== '') {
     const body = new FormData()
     body.append('query', req.body.message)
@@ -15,17 +14,10 @@ router.post('/', (req, res) => {
     const method = 'POST'
     return fetch('https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk', {method, body})
       .then(response => response.json())
-      // .then(data => {
-      //   console.log('data=', data, req.body.message)
-      //   return {
-      //     message: `${data.results[0].reply}`
-      //   }
-      // })
-  } // else {
-  //   return res.json({
-  //     message: 'なんですか？'
-  //   })
-  // }
+      .then(json => {
+        res.json(json.results[0].reply)
+      })
+  }
 })
 
 module.exports = router
