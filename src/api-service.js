@@ -1,10 +1,12 @@
 export default {
-  postMessage: (message) => {
-    const obj = {message: `${message}`}
+  postMessage: (message, chatMode) => {
+    const obj = {
+      message: message,
+      mode: chatMode
+    }
     const method = 'POST'
     const body = JSON.stringify(obj)
     const headers = {
-      'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
     return fetch('./api/answer', {method, headers, body})

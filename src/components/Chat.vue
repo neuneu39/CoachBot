@@ -2,6 +2,20 @@
 <div class="message">
   <div class="input-message">
     <h2>input message</h2>
+    <div class="buttons-container">
+      <button
+       class="N-mode"
+       v-on:click="setMode(1)"
+      >
+      N-mode
+      </button>
+      <button
+       class="R-mode"
+       v-on:click="setMode(2)"
+      >
+      R-Mode
+      </button>
+    </div>
     <!-- submitイベントによるページのリロード防止 -->
     <form v-on:submit.prevent="sendMessage" method="post">
       <textarea v-model="messageText" placeholder="write text" />
@@ -41,7 +55,8 @@ export default {
       messageText: '',
       answerText: [],
       ids: 0,
-      errorMessage: ''
+      errorMessage: '',
+      chatMode: 1
     }
   },
   methods: {
@@ -49,7 +64,7 @@ export default {
       this.resetErrorMessage()
       if (this.messageText !== '') {
         this.answerText.push(this.setMessage(this.ids++, this.messageText, false))
-        apiService.postMessage(this.messageText)
+        apiService.postMessage(this.messageText, this.chatMode)
           .then(json => {
             this.answerText.push(this.setMessage(this.ids++, json.message))
           })
@@ -66,7 +81,8 @@ export default {
       return {
         id: idNum,
         message: text,
-        botFlag: Flag
+        botFlag: Flag,
+        mode: this.chatMode
       }
     },
     setErrorMessage: function (eMessage) {
@@ -74,6 +90,9 @@ export default {
     },
     resetErrorMessage: function () {
       this.errorMessage = ''
+    },
+    setMode: function (mode) {
+      this.chatMode = mode
     }
   }
 }
@@ -171,5 +190,16 @@ button {
   width: 20%;
   margin: 5px auto;
   padding: 10px;
+}
+button.N-mode {
+  background-color: rgb(77, 236, 56);
+}
+button.R-mode {
+  background-color: red;
+}
+.counters-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
 }
 </style>
