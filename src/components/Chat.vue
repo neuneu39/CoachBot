@@ -5,13 +5,13 @@
     <div class="buttons-container">
       <button
        class="N-mode"
-       v-on:click="setMode(NMODE)"
+       v-on:click="setNMode()"
       >
       N-mode
       </button>
       <button
        class="R-mode"
-       v-on:click="setMode(RMODE)"
+       v-on:click="setRMode()"
       >
       R-Mode
       </button>
@@ -58,9 +58,7 @@ export default {
       answerText: [],
       ids: 0,
       errorMessage: '',
-      chatMode: NMODE,
-      NMODE: NMODE,
-      RMODE: RMODE
+      chatMode: NMODE
     }
   },
   methods: {
@@ -97,6 +95,13 @@ export default {
     },
     setMode: function (mode) {
       this.chatMode = mode
+      console.log(mode)
+    },
+    setNMode: function () {
+      this.setMode(NMODE)
+    },
+    setRMode: function () {
+      this.setMode(RMODE)
     }
   }
 }
