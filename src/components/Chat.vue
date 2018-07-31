@@ -5,7 +5,7 @@
     <div class="buttons-container">
       <button
        class="N-mode"
-       v-on:click="setMode(MMODE)"
+       v-on:click="setMode(NMODE)"
       >
       N-mode
       </button>
