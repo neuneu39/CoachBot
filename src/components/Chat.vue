@@ -5,13 +5,13 @@
     <div class="buttons-container">
       <button
        class="N-mode"
-       v-on:click="setMode(1)"
+       v-on:click="setMode(MMODE)"
       >
       N-mode
       </button>
       <button
        class="R-mode"
-       v-on:click="setMode(2)"
+       v-on:click="setMode(RMODE)"
       >
       R-Mode
       </button>
@@ -48,6 +48,8 @@
 <script>
 import apiService from '../api-service'
 const normalMessage = 'なにか入力してください！'
+const NMODE = 1
+const RMODE = 2
 export default {
   name: 'Chat',
   data () {
@@ -56,7 +58,9 @@ export default {
       answerText: [],
       ids: 0,
       errorMessage: '',
-      chatMode: 1
+      chatMode: NMODE,
+      NMODE: NMODE,
+      RMODE: RMODE
     }
   },
   methods: {
