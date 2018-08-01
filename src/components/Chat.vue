@@ -4,18 +4,20 @@
   <div class="input-message">
     <h2>input message</h2>
     <div class="buttons-container">
-      <button
-       class="N-mode"
-       v-on:click="setNMode()"
-      >
-      N-mode
-      </button>
-      <button
-       class="R-mode"
-       v-on:click="setRMode()"
-      >
-      R-Mode
-      </button>
+      <v-layout align-start justify-center row fill-height>
+        <v-btn small
+        v-on:click="setNMode()"
+        >
+        N-mode
+        </v-btn>
+        <v-btn
+        small
+        color="primary"
+        v-on:click="setRMode()"
+        >
+        R-Mode
+        </v-btn>
+    </v-layout>
     </div>
     <!-- submitイベントによるページのリロード防止 -->
     <form v-on:submit.prevent="sendMessage" method="post">
