@@ -1,5 +1,6 @@
 <template>
 <div class="message">
+  <v-layout align-center justify-center column fill-height>
   <div class="input-message">
     <h2>input message</h2>
     <div class="buttons-container">
@@ -42,6 +43,7 @@
     <p>{{ errorMessage }}</p>
   </div>
   <p>Back to the <router-link to="/">Home</router-link></p>
+  </v-layout>
 </div>
 </template>
 
