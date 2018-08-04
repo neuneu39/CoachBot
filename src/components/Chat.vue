@@ -1,31 +1,24 @@
 <template>
 <div class="message">
-  <v-layout align-center justify-center column fill-height>
-  <div class="input-message">
-    <h2>input message</h2>
-    <div class="buttons-container">
-      <v-layout align-start justify-center row fill-height>
-        <v-btn small
+  <!-- <v-layout justify-space-around column fill-height> -->
+  <v-layout align-space-around justify-space-around column>
+    <v-layout align-start justify-center row fill-height>
+        <v-btn
+        large
         v-on:click="setNMode()"
         >
         N-mode
         </v-btn>
         <v-btn
-        small
+        large
         color="primary"
         v-on:click="setRMode()"
         >
         R-Mode
         </v-btn>
     </v-layout>
-    </div>
-    <!-- submitイベントによるページのリロード防止 -->
-    <form v-on:submit.prevent="sendMessage" method="post">
-      <textarea v-model="messageText" placeholder="write text" />
-      <button type="submit">OK</button>
-    </form>
-  </div>
-  <h2>output message</h2>
+  <v-flex xs6>
+  <!-- <h2>output message</h2> -->
   <div v-for="text of answerText" v-bind:key="text.id" class="output-message">
     <div v-if=text.botFlag class="bot-message">
       <div class="faceicon">
@@ -44,7 +37,26 @@
   <div v-if=errorMessage>
     <p>{{ errorMessage }}</p>
   </div>
-  <p>Back to the <router-link to="/">Home</router-link></p>
+  </v-flex>
+    <div class="input-message">
+    <!-- <div class="buttons-container"> -->
+
+    <!-- </div> -->
+    <!-- submitイベントによるページのリロード防止 -->
+    <form v-on:submit.prevent="sendMessage" method="post">
+       <v-flex xs12>
+          <v-textarea
+            v-model="messageText"
+            solo
+            name="input-7-4"
+            placeholder="write text"
+            auto-grow
+          ></v-textarea>
+      </v-flex>
+      <button type="submit">OK</button>
+    </form>
+  </div>
+  <!-- <p>Back to the <router-link to="/">Home</router-link></p> -->
   </v-layout>
 </div>
 </template>
@@ -112,18 +124,20 @@ export default {
 </script>
 <style>
 .message {
-  width: 100%;
+  width: 70%;
   padding: 15px;
 }
 .input-message, {
-  width: 46%;
+  /* width: 46%; */
   border: 1px solid #ddd;
-  padding: 10px;
+  /* max-width: 450px; */
+  /* padding: 10px; */
   margin: auto;
 }
 .output-message {
   padding: 1px 10px;
-  max-width: 450px;
+  /* max-width: 450px; */
+  /* width: 100%; */
   margin: auto;
   text-align: right;
   font-size: 14px;
@@ -173,7 +187,6 @@ export default {
   margin: 0;
   padding: 0;
 }
-/*以下、③右側の緑コメント*/
 .user-message {
   margin: 10px 0;
 }

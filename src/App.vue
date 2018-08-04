@@ -5,8 +5,8 @@
     <router-view/>
   </div> -->
 
-<!-- <div id="app">
-  <v-app id="inspire">
+<div id="app">
+<!--   <v-app id="inspire">
     <v-navigation-drawer
       fixed
       v-model="drawer"
@@ -53,7 +53,7 @@
       </v-container>
     </v-content>
     <v-footer color="indigo" app inset>
-      <span class="white--text">&copy; 2017</span>
+      <span class="white-text">&copy; 2017</span>
     </v-footer>
   </v-app>
 </div> -->
@@ -61,13 +61,13 @@
   <v-app id="inspire">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-    <v-navigation-drawer
+     <v-navigation-drawer
       v-model="drawer"
       fixed
       app
     >
-      <v-list dense>
-        <!-- <v-list-tile @click="test">
+    <!--  <v-list dense>
+        <v-list-tile>
           <v-list-tile-action>
             <v-icon>home</v-icon>
           </v-list-tile-action>
@@ -75,16 +75,23 @@
             <v-list-tile-title>Home</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile @click="test">
+        <!- <v-list-tile @click="test"> -->
+        <!-- <v-list-tile>
           <v-list-tile-action>
             <v-icon>contact_mail</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>Contact</v-list-tile-title>
           </v-list-tile-content>
-        </v-list-tile> -->
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
+    <!- <div>
+      <ToolBar/>
+    </div> -->
+    <ToolBar/>
+    </v-navigation-drawer>
+
     <v-toolbar color="indigo" dark fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>CoachBot</v-toolbar-title>
@@ -96,28 +103,35 @@
           column
           align-center
         >
-        <img class="item-img" src="./assets/coaching.jpg">
+        <!-- <img class="item-img" src="./assets/coaching.jpg"> -->
         <router-view/>
-          <v-flex text-xs-center>
+          <!-- <v-flex text-xs-center>
             <v-tooltip left>
               <v-btn slot="activator" :href="source" icon large target="_blank">
                 <v-icon large>code</v-icon>
               </v-btn>
               <span>Source</span>
             </v-tooltip>
-          </v-flex>
+          </v-flex> -->
         </v-layout>
       </v-container>
     </v-content>
     <v-footer color="indigo" app>
+      <v-layout align-center justify-center column fill-height>
       <span class="white--text">&copy; 2018</span>
+      </v-layout>
     </v-footer>
   </v-app>
+</div>
 </template>
 
 <script>
+import ToolBar from './components/ToolBar'
 export default {
   name: 'App',
+  components: {
+    ToolBar: ToolBar
+  },
   data: () => ({
     drawer: null
   }),
