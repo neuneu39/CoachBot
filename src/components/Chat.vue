@@ -96,6 +96,7 @@ export default {
       }
     },
     setMessage: function (idNum, text, Flag = true) {
+      this.resetTextArea()
       return {
         id: idNum,
         message: text,
@@ -108,6 +109,9 @@ export default {
     },
     resetErrorMessage: function () {
       this.errorMessage = ''
+    },
+    resetTextArea: function () {
+      this.messageText = ''
     },
     setMode: function (mode) {
       this.chatMode = mode
