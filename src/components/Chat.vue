@@ -15,7 +15,7 @@
         <v-btn
                 large
                 color="primary"
-                v-on:click="setRMode()"
+                @click="setRMode()"
         >
         R-Mode
         </v-btn>
