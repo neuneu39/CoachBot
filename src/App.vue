@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <v-navigation-drawer
-      v-model="drawer"
-      fixed
-      app
+                          v-model="drawer"
+                          fixed
+                          app
     >
       <ToolBar/>
     </v-navigation-drawer>
