@@ -8,7 +8,7 @@
   <v-app id="inspire">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-     <v-navigation-drawer
+    <v-navigation-drawer
       v-model="drawer"
       fixed
       app
@@ -22,8 +22,6 @@
     </v-toolbar>
     <v-container fluid grid-list-sm fill-heigh>
       <v-content>
-        <!-- <v-container fluid fill-height>
-        </v-container> -->
         <v-layout row wrap>
           <v-flex d-flex xs12 sm6 md4>
             <v-layout row wrap>
@@ -53,7 +51,6 @@
                   column
                   align-center
                   >
-                <!-- <img class="item-img" src="./assets/coaching.jpg"> -->
                   <router-view/>
                   </v-layout>
                 </v-card-text>
@@ -64,7 +61,7 @@
     </v-container>
     <v-footer color="indigo" app>
       <v-layout align-center justify-center column fill-height>
-      <span class="white--text">&copy; 2018</span>
+        <span class="white--text">&copy; 2018</span>
       </v-layout>
     </v-footer>
   </v-app>
