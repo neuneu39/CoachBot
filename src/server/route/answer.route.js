@@ -39,7 +39,7 @@ function nModeFunc(req, res) {
     .then(response => response.json())
     .then(json => {
       console.log(json)
-      res.json(`${json.entities[0].name}ってどういう意味ですか？`)
+      res.json(json)
     })
 }
 function rModeFunc(req, res) {
