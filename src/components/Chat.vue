@@ -1,8 +1,11 @@
 <template>
 <div class="message">
+    <div v-if=errorMessage>
+      <p>{{ errorMessage }}</p>
+    </div>
   <!-- <v-layout justify-space-around column fill-height> -->
-  <v-layout align-space-around justify-space-around column>
-    <v-layout align-start justify-center row fill-height>
+  <v-layout align-space-around column >
+    <v-layout justify-center row fill-height>
         <v-btn
         large
         v-on:click="setNMode()"
@@ -17,42 +20,45 @@
         R-Mode
         </v-btn>
     </v-layout>
-  <v-flex xs6>
-  <!-- <h2>output message</h2> -->
-  <div v-for="text of answerText" v-bind:key="text.id" class="output-message">
-    <div v-if=text.botFlag class="bot-message">
-      <div class="faceicon">
-        <img src="../assets/logo.png">
-      </div>
-      <div class="chatting">
-        <div class="says">
-          <p>{{ text.message }}</p>
+    <v-parallax
+    height="250"
+    dark
+    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+    >
+      <ul class="chatroom" v-chat-scroll>
+        <div v-for="text of answerText" v-bind:key="text.id" class="output-message" v-chat-scroll>
+          <div v-if=text.botFlag class="bot-message">
+            <div class="faceicon">
+              <img src="../assets/logo.png">
+            </div>
+            <div class="chatting">
+              <div class="says">
+                <p>{{ text.message }}</p>
+              </div>
+            </div>
+          </div>
+          <div v-if=!text.botFlag class="user-message">
+            <p>{{ text.message }}</p>
+          </div>
         </div>
-      </div>
-    </div>
-    <div v-if=!text.botFlag class="user-message">
-      <p>{{ text.message }}</p>
-    </div>
-  </div>
-  <div v-if=errorMessage>
-    <p>{{ errorMessage }}</p>
-  </div>
-  </v-flex>
+      </ul>
+    </v-parallax>
     <div class="input-message">
       <!-- submitイベントによるページのリロード防止 -->
       <form v-on:submit.prevent="sendMessage" method="post">
-          <v-flex xs12>
-            <v-textarea
-              v-model="messageText"
-              solo
-              name="input-7-4"
-              placeholder="write text"
-              auto-grow
-            ></v-textarea>
+        <v-flex xs12>
+          <v-textarea
+            v-model="messageText"
+            solo
+            name="input-7-4"
+            placeholder="write text"
+            auto-grow
+          ></v-textarea>
         </v-flex>
         <button type="submit">OK</button>
       </form>
     </div>
+  <!-- </v-flex> -->
   </v-layout>
 </div>
 </template>
@@ -124,12 +130,19 @@ export default {
 </script>
 <style>
 .message {
-  width: 70%;
-  padding: 15px;
+  width: 100%;
+  /* padding: 15px; */
+}
+.chatroom {
+  /* height: 200px;
+  width: 100%;
+  border: 1px solid black;
+  padding: 10px 20px 5px 10px; */
+  overflow-y: auto;
 }
 .input-message, {
   /* width: 46%; */
-  border: 1px solid #ddd;
+  border: 1px solid rgb(29, 11, 11);
   /* max-width: 450px; */
   /* padding: 10px; */
   margin: auto;
@@ -141,7 +154,7 @@ export default {
   margin: auto;
   text-align: right;
   font-size: 14px;
-  background: #7da4cd;
+  /* background: #7da4cd; */
 }
 .bot-message {
   width: 100%;
@@ -169,7 +182,7 @@ export default {
   padding: 10px;
   max-width: 250px;
   border-radius: 12px;
-  background: #edf1ee;
+  background: hsl(236, 91%, 46%);
 }
 .says::after {
   content: "";
@@ -178,7 +191,7 @@ export default {
   top: 3px;
   left: -19px;
   border: 8px solid transparent;
-  border-right: 18px solid #edf1ee;
+  border-right: 18px solid hsl(236, 91%, 46%);
   -ms-transform: rotate(35deg);
   -webkit-transform: rotate(35deg);
   transform: rotate(35deg);

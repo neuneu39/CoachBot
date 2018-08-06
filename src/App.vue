@@ -43,7 +43,7 @@
             </v-layout>
           </v-flex>
           <v-flex d-flex xs12 sm6 md8>
-            <v-card color="blue-grey lighten-3" dark>
+            <v-card color="blue-grey lighten-3">
               <v-card-title primary class="title">Chat</v-card-title>
                 <v-card-text>
                   <v-layout
