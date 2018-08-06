@@ -2,7 +2,6 @@
   <!-- <div id="app">
     <h1>CoachBot Test</h1>
     <img class="item-img" src="./assets/coaching.jpg">
-    <router-view/>
   </div> -->
 
 <div id="app">
@@ -21,18 +20,48 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>CoachBot</v-toolbar-title>
     </v-toolbar>
-    <v-content>
-      <v-container fluid fill-height>
-        <v-layout
-          justify-center
-          column
-          align-center
-        >
-        <!-- <img class="item-img" src="./assets/coaching.jpg"> -->
-        <router-view/>
+    <v-container fluid grid-list-sm fill-heigh>
+      <v-content>
+        <!-- <v-container fluid fill-height>
+        </v-container> -->
+        <v-layout row wrap>
+          <v-flex d-flex xs12 sm6 md4>
+            <v-layout row wrap>
+              <v-flex d-flex sm12>
+                <v-card color="indigo" dark>
+                  <v-card-text>Character</v-card-text>
+                </v-card>
+              </v-flex>
+              <v-flex d-flex sm12>
+                <v-card color="indigo" dark>
+                  <v-card-text>Mode</v-card-text>
+                </v-card>
+              </v-flex>
+              <v-flex d-flex sm12>
+                <v-card color="white">
+                  <v-card-text></v-card-text>
+                </v-card>
+              </v-flex>
+            </v-layout>
+          </v-flex>
+          <v-flex d-flex xs12 sm6 md8>
+            <v-card color="blue-grey lighten-3" dark>
+              <v-card-title primary class="title">Chat</v-card-title>
+                <v-card-text>
+                  <v-layout
+                  justify-center
+                  column
+                  align-center
+                  >
+                <!-- <img class="item-img" src="./assets/coaching.jpg"> -->
+                  <router-view/>
+                  </v-layout>
+                </v-card-text>
+            </v-card>
+          </v-flex>
         </v-layout>
-      </v-container>
-    </v-content>
+      </v-content>
+    </v-container>
     <v-footer color="indigo" app>
       <v-layout align-center justify-center column fill-height>
       <span class="white--text">&copy; 2018</span>

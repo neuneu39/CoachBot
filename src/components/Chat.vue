@@ -39,24 +39,20 @@
   </div>
   </v-flex>
     <div class="input-message">
-    <!-- <div class="buttons-container"> -->
-
-    <!-- </div> -->
-    <!-- submitイベントによるページのリロード防止 -->
-    <form v-on:submit.prevent="sendMessage" method="post">
-       <v-flex xs12>
-          <v-textarea
-            v-model="messageText"
-            solo
-            name="input-7-4"
-            placeholder="write text"
-            auto-grow
-          ></v-textarea>
-      </v-flex>
-      <button type="submit">OK</button>
-    </form>
-  </div>
-  <!-- <p>Back to the <router-link to="/">Home</router-link></p> -->
+      <!-- submitイベントによるページのリロード防止 -->
+      <form v-on:submit.prevent="sendMessage" method="post">
+          <v-flex xs12>
+            <v-textarea
+              v-model="messageText"
+              solo
+              name="input-7-4"
+              placeholder="write text"
+              auto-grow
+            ></v-textarea>
+        </v-flex>
+        <button type="submit">OK</button>
+      </form>
+    </div>
   </v-layout>
 </div>
 </template>
