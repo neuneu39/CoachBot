@@ -96,7 +96,7 @@ export default {
       }
     },
     setMessage: function (idNum, text, Flag = true) {
-      this.resetTextArea()
+      this.resetTextAreaMessage()
       return {
         id: idNum,
         message: text,
@@ -110,7 +110,7 @@ export default {
     resetErrorMessage: function () {
       this.errorMessage = ''
     },
-    resetTextArea: function () {
+    resetTextAreaMessage: function () {
       this.messageText = ''
     },
     setMode: function (mode) {
@@ -220,12 +220,6 @@ button {
   width: 20%;
   margin: 5px auto;
   padding: 10px;
-}
-button.N-mode {
-  background-color: rgb(77, 236, 56);
-}
-button.R-mode {
-  background-color: red;
 }
 .counters-container {
   display: flex;
