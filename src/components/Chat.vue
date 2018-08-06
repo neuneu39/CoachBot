@@ -7,15 +7,15 @@
   <v-layout align-space-around column >
     <v-layout justify-center row fill-height>
         <v-btn
-        large
-        v-on:click="setNMode()"
+                large
+                @click="setNMode()"
         >
         N-mode
         </v-btn>
         <v-btn
-        large
-        color="primary"
-        v-on:click="setRMode()"
+                large
+                color="primary"
+                v-on:click="setRMode()"
         >
         R-Mode
         </v-btn>
@@ -62,7 +62,6 @@
   </v-layout>
 </div>
 </template>
-
 <script>
 import apiService from '../api-service'
 const normalMessage = 'なにか入力してください！'
