@@ -3,7 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+import VueChatScroll from 'vue-chat-scroll'
 
+Vue.use(VueChatScroll)
+Vue.use(Vuetify, {
+  iconfont: 'mdi' // 'md' || 'mdi' || 'fa' || 'fa4'
+})
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

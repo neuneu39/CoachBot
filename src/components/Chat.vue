@@ -1,50 +1,63 @@
 <template>
 <div class="message">
-  <div class="input-message">
-    <h2>input message</h2>
-    <div class="buttons-container">
-      <button
-       class="N-mode"
-       v-on:click="setNMode()"
-      >
-      N-mode
-      </button>
-      <button
-       class="R-mode"
-       v-on:click="setRMode()"
-      >
-      R-Mode
-      </button>
+    <div v-if=errorMessage>
+      <p>{{ errorMessage }}</p>
     </div>
-    <!-- submitイベントによるページのリロード防止 -->
-    <form v-on:submit.prevent="sendMessage" method="post">
-      <textarea v-model="messageText" placeholder="write text" />
-      <button type="submit">OK</button>
-    </form>
-  </div>
-  <h2>output message</h2>
-  <div v-for="text of answerText" v-bind:key="text.id" class="output-message">
-    <div v-if=text.botFlag class="bot-message">
-      <div class="faceicon">
-        <img src="../assets/logo.png">
-      </div>
-      <div class="chatting">
-        <div class="says">
-          <p>{{ text.message }}</p>
+  <v-layout align-space-around column >
+    <v-layout justify-center row fill-height>
+        <v-btn
+                large
+                @click="setNMode()"
+        >
+        N-mode
+        </v-btn>
+        <v-btn
+                large
+                color="primary"
+                @click="setRMode()"
+        >
+        R-Mode
+        </v-btn>
+    </v-layout>
+    <v-parallax
+                height="350"
+                dark
+                src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+    >
+      <div class="chatroom" v-chat-scroll>
+        <div v-for="text of answerText" v-bind:key="text.id" class="output-message" v-chat-scroll>
+          <div v-if=text.botFlag class="bot-message">
+            <div class="faceicon">
+              <img src="../assets/logo.png">
+            </div>
+            <div class="chatting">
+              <div class="says">
+                <p>{{ text.message }}</p>
+              </div>
+            </div>
+          </div>
+          <div v-if=!text.botFlag class="user-message">
+            <p>{{ text.message }}</p>
+          </div>
         </div>
       </div>
+    </v-parallax>
+    <div class="input-message">
+      <!-- submitイベントによるページのリロード防止 -->
+      <form v-on:submit.prevent="sendMessage" method="post">
+        <v-textarea
+                    v-model="messageText"
+                    solo
+                    name="input-7-4"
+                    placeholder="write text"
+                    height="80"
+        ></v-textarea>
+        <button type="submit">OK</button>
+      </form>
     </div>
-    <div v-if=!text.botFlag class="user-message">
-      <p>{{ text.message }}</p>
-    </div>
-  </div>
-  <div v-if=errorMessage>
-    <p>{{ errorMessage }}</p>
-  </div>
-  <p>Back to the <router-link to="/">Home</router-link></p>
+  </v-layout>
 </div>
 </template>
-
 <script>
 import apiService from '../api-service'
 const normalMessage = 'なにか入力してください！'
@@ -80,6 +93,7 @@ export default {
       }
     },
     setMessage: function (idNum, text, Flag = true) {
+      this.resetTextAreaMessage()
       return {
         id: idNum,
         message: text,
@@ -92,6 +106,9 @@ export default {
     },
     resetErrorMessage: function () {
       this.errorMessage = ''
+    },
+    resetTextAreaMessage: function () {
+      this.messageText = ''
     },
     setMode: function (mode) {
       this.chatMode = mode
@@ -109,21 +126,26 @@ export default {
 <style>
 .message {
   width: 100%;
-  padding: 15px;
+  /* padding: 15px; */
+}
+.chatroom {
+  overflow-y: auto;
 }
 .input-message, {
-  width: 46%;
-  border: 1px solid #ddd;
-  padding: 10px;
+  /* width: 46%; */
+  border: 1px solid rgb(29, 11, 11);
+  /* max-width: 450px; */
+  /* padding: 10px; */
   margin: auto;
 }
 .output-message {
   padding: 1px 10px;
-  max-width: 450px;
+  /* max-width: 450px; */
+  /* width: 100%; */
   margin: auto;
   text-align: right;
   font-size: 14px;
-  background: #7da4cd;
+  /* background: #7da4cd; */
 }
 .bot-message {
   width: 100%;
@@ -151,7 +173,7 @@ export default {
   padding: 10px;
   max-width: 250px;
   border-radius: 12px;
-  background: #edf1ee;
+  background: hsl(236, 91%, 46%);
 }
 .says::after {
   content: "";
@@ -160,7 +182,7 @@ export default {
   top: 3px;
   left: -19px;
   border: 8px solid transparent;
-  border-right: 18px solid #edf1ee;
+  border-right: 18px solid hsl(236, 91%, 46%);
   -ms-transform: rotate(35deg);
   -webkit-transform: rotate(35deg);
   transform: rotate(35deg);
@@ -169,7 +191,6 @@ export default {
   margin: 0;
   padding: 0;
 }
-/*以下、③右側の緑コメント*/
 .user-message {
   margin: 10px 0;
 }
@@ -199,12 +220,6 @@ button {
   width: 20%;
   margin: 5px auto;
   padding: 10px;
-}
-button.N-mode {
-  background-color: rgb(77, 236, 56);
-}
-button.R-mode {
-  background-color: red;
 }
 .counters-container {
   display: flex;
