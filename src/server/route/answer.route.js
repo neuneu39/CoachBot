@@ -66,18 +66,18 @@ function makeResponseWord(dataJson, req, res) {
 	let entitie = dataJson.entities
 	let sen_magnitude = dataJson.documentSentiment.magnitude
 	let sen_score = dataJson.documentSentiment.score
-  let ImportWord = '...'
+  let ImportandWord = '...'
   const Flag = 1
 
   // 感情スコアと重要度で返答する内容をを場合分け
 	if (sen_magnitude > 0.1 && sen_score > 0.3) {
-		ImportWord = findImportantWord(entitie)
-		return ImportWord.name + 'ってどういうことですか。もっと聞かせてください'
+		ImportandWord = findImportantWord(entitie)
+		return ImporandtWord.name + 'ってどういうことですか。もっと聞かせてください'
 	} else if (sen_magnitude > 0.1 && sen_score < -0.3) {
-		ImportWord = findImportantWord(entitie)
-		return 'そうなんですね' + ImportWord.name + 'ってどんなことですか'
+		ImportandWord = findImportantWord(entitie)
+		return 'そうなんですね' + ImportandWord.name + 'ってどんなことですか'
 	} else {
-    return ImportWord
+    return ImportandWord
 	}
 }
 
