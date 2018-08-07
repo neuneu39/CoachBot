@@ -46,7 +46,6 @@ function rModeFunc(req, res) {
     .then(json => {
       console.log(json)
       res.json(makeResponseWord(json, req, res))
-      // res.json(`${json.entities[0].name}ってどういう意味ですか？`)
     })
 }
 function nModeFunc(req, res, flag) {
