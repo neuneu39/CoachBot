@@ -15,7 +15,6 @@
     >
       <ToolBar/>
     </v-navigation-drawer>
-
     <v-toolbar color="indigo" dark fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>CoachBot</v-toolbar-title>
@@ -86,8 +85,6 @@ export default {
 
 <style>
 .item-img {
-  /* width: 150px;
-  height: auto; */
   width: 50%;
   height: auto;
 }

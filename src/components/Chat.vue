@@ -3,7 +3,6 @@
     <div v-if=errorMessage>
       <p>{{ errorMessage }}</p>
     </div>
-  <!-- <v-layout justify-space-around column fill-height> -->
   <v-layout align-space-around column >
     <v-layout justify-center row fill-height>
         <v-btn
@@ -21,11 +20,11 @@
         </v-btn>
     </v-layout>
     <v-parallax
-                height="250"
+                height="350"
                 dark
                 src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
     >
-      <ul class="chatroom" v-chat-scroll>
+      <div class="chatroom" v-chat-scroll>
         <div v-for="text of answerText" v-bind:key="text.id" class="output-message" v-chat-scroll>
           <div v-if=text.botFlag class="bot-message">
             <div class="faceicon">
@@ -41,24 +40,21 @@
             <p>{{ text.message }}</p>
           </div>
         </div>
-      </ul>
+      </div>
     </v-parallax>
     <div class="input-message">
       <!-- submitイベントによるページのリロード防止 -->
       <form v-on:submit.prevent="sendMessage" method="post">
-        <v-flex xs12>
-          <v-textarea
-                        v-model="messageText"
-                        solo
-                        name="input-7-4"
-                        placeholder="write text"
-                        auto-grow
-          ></v-textarea>
-        </v-flex>
+        <v-textarea
+                    v-model="messageText"
+                    solo
+                    name="input-7-4"
+                    placeholder="write text"
+                    height="80"
+        ></v-textarea>
         <button type="submit">OK</button>
       </form>
     </div>
-  <!-- </v-flex> -->
   </v-layout>
 </div>
 </template>
@@ -133,10 +129,6 @@ export default {
   /* padding: 15px; */
 }
 .chatroom {
-  /* height: 200px;
-  width: 100%;
-  border: 1px solid black;
-  padding: 10px 20px 5px 10px; */
   overflow-y: auto;
 }
 .input-message, {
