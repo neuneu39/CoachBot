@@ -93,7 +93,7 @@ export default {
       }
     },
     setMessage: function (idNum, text, Flag = true) {
-      this.resetTextAreaMessage()
+      if (Flag === true) this.resetTextAreaMessage()
       return {
         id: idNum,
         message: text,
