@@ -21,11 +21,11 @@
         </v-btn>
     </v-layout>
     <v-parallax
-                height="250"
+                height="350"
                 dark
                 src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
     >
-      <ul class="chatroom" v-chat-scroll>
+      <div class="chatroom" v-chat-scroll>
         <div v-for="text of answerText" v-bind:key="text.id" class="output-message" v-chat-scroll>
           <div v-if=text.botFlag class="bot-message">
             <div class="faceicon">
@@ -41,24 +41,20 @@
             <p>{{ text.message }}</p>
           </div>
         </div>
-      </ul>
+      </div>
     </v-parallax>
     <div class="input-message">
       <!-- submitイベントによるページのリロード防止 -->
       <form v-on:submit.prevent="sendMessage" method="post">
-        <v-flex xs12>
-          <v-textarea
-                        v-model="messageText"
-                        solo
-                        name="input-7-4"
-                        placeholder="write text"
-                        auto-grow
-          ></v-textarea>
-        </v-flex>
+        <v-textarea
+                      v-model="messageText"
+                      solo
+                      name="input-7-4"
+                      placeholder="write text"
+        ></v-textarea>
         <button type="submit">OK</button>
       </form>
     </div>
-  <!-- </v-flex> -->
   </v-layout>
 </div>
 </template>
