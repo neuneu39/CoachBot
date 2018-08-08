@@ -3,6 +3,7 @@
     <div v-if=errorMessage>
       <p>{{ errorMessage }}</p>
     </div>
+  <!-- <v-layout justify-space-around column fill-height> -->
   <v-layout align-space-around column >
     <v-layout justify-center row fill-height>
         <v-btn
@@ -46,11 +47,10 @@
       <!-- submitイベントによるページのリロード防止 -->
       <form v-on:submit.prevent="sendMessage" method="post">
         <v-textarea
-                    v-model="messageText"
-                    solo
-                    name="input-7-4"
-                    placeholder="write text"
-                    height="80"
+                      v-model="messageText"
+                      solo
+                      name="input-7-4"
+                      placeholder="write text"
         ></v-textarea>
         <button type="submit">OK</button>
       </form>
@@ -92,12 +92,14 @@ export default {
         this.answerText.push(this.setMessage(this.ids++, normalMessage))
       }
     },
-    setMessage: function (idNum, text, Flag = true) {
-      this.resetTextAreaMessage()
+    setMessage: function (idNum, text, flag = true) {
+      if (flag) {
+        this.resetTextAreaMessage()
+      }
       return {
         id: idNum,
         message: text,
-        botFlag: Flag,
+        botFlag: flag,
         mode: this.chatMode
       }
     },

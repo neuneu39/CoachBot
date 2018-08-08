@@ -46,9 +46,9 @@
               <v-card-title primary class="title">Chat</v-card-title>
                 <v-card-text>
                   <v-layout
-                  justify-center
-                  column
-                  align-center
+                            justify-center
+                            column
+                            align-center
                   >
                   <router-view/>
                   </v-layout>

@@ -8,21 +8,21 @@ const RMODE = 2;
 router.post('/', (req, res) => {
   if (req.body.message !== '') {
     if(req.body.mode === RMODE) {
-      nModeFunc(req, res)
+      rModeFunc(req, res)
     } else {
-      rModeFunc(req,res)
+      nModeFunc(req, res)
     }
   }
 })
 
-function nModeFunc(req, res) {
+function rModeFunc(req, res) {
   const method = 'POST'
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   }
   const obj = {
-    'document': {
+    'document': { 
       'type': 'PLAIN_TEXT',
       'content': `${req.body.message}`
     },
@@ -39,14 +39,16 @@ function nModeFunc(req, res) {
     .then(response => response.json())
     .then(json => {
       console.log(json)
-      res.json(json)
+      res.json(makeResponseWord(json, req, res))
     })
 }
-function rModeFunc(req, res) {
+
+function nModeFunc(req, res) {
   const body = new FormData()
   body.append('query', req.body.message)
   body.append('apikey', ApiKeys.talkApi)  
   const method = 'POST'
+  console.log('こんにちは')
    // 要約機能使う場合
    // body.append('apikey', ApiKeys.summarizeApi)
    // body.append('sentences', req.body.message)
@@ -58,6 +60,32 @@ function rModeFunc(req, res) {
       console.log(json)
       res.json(json.results[0].reply)
     })
+}
+
+function makeResponseWord(dataJson, req, res) {
+	let entitie = dataJson.entities
+	let sen_magnitude = dataJson.documentSentiment.magnitude
+	let sen_score = dataJson.documentSentiment.score
+  let ImportandWord = '...'
+
+  // 感情スコアと重要度で返答する内容をを場合分け
+	if (sen_magnitude > 0.1 && sen_score > 0.3) {
+		ImportandWord = findImportantWord(entitie)
+		return ImporandtWord.name + 'ってどういうことですか。もっと聞かせてください'
+	} else if (sen_magnitude > 0.1 && sen_score < -0.3) {
+		ImportandWord = findImportantWord(entitie)
+		return 'そうなんですね' + ImportandWord.name + 'ってどんなことですか'
+	} else {
+    return ImportandWord
+	}
+}
+
+function findImportantWord(entitie) {
+	const MaxSalience = Math.max(...entitie.map((o) => o.salience));
+	const importantEntitie = entitie.filter((value) => {
+	    return value.salience === MaxSalience
+	});
+	return importantEntitie[0] //最初の重要度の高い単語を表示
 }
 
 module.exports = router
