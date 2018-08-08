@@ -67,7 +67,6 @@ function makeResponseWord(dataJson, req, res) {
 	let sen_magnitude = dataJson.documentSentiment.magnitude
 	let sen_score = dataJson.documentSentiment.score
   let ImportandWord = '...'
-  const Flag = 1
 
   // 感情スコアと重要度で返答する内容をを場合分け
 	if (sen_magnitude > 0.1 && sen_score > 0.3) {
