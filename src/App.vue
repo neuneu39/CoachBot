@@ -31,7 +31,10 @@
               </v-flex>
               <v-flex d-flex sm12>
                 <v-card color="indigo" dark>
-                  <v-card-text>Mode</v-card-text>
+                  <v-card-text>
+                    Mode
+                    <Mode/>
+                  </v-card-text>
                 </v-card>
               </v-flex>
               <v-flex d-flex sm12>
@@ -69,10 +72,12 @@
 
 <script>
 import ToolBar from './components/ToolBar'
+import Mode from './components/Mode'
 export default {
   name: 'App',
   components: {
-    ToolBar
+    ToolBar,
+    Mode
   },
   data: () => ({
     drawer: null
