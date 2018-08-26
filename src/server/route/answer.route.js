@@ -68,10 +68,16 @@ function makeResponseWord(dataJson, req, res) {
 	let sen_score = dataJson.documentSentiment.score
   let ImportandWord = '...'
 
+  // 条件分岐の追加（importantwordがあるかないか） 
+  // なかった場合はすぐにreturnしてしまう。
+
   // 感情スコアと重要度で返答する内容をを場合分け
 	if (sen_magnitude > 0.1 && sen_score > 0.3) {
-		ImportandWord = findImportantWord(entitie)
-		return ImporandtWord.name + 'ってどういうことですか。もっと聞かせてください'
+    ImportandWord = findImportantWord(entitie)
+    if(ImportandWord.hasOwnProperty('name')) {
+      return ImportandWord.name + 'ってどういうことですか。もっと聞かせてください'
+    } 
+    return 'はい'
 	} else if (sen_magnitude > 0.1 && sen_score < -0.3) {
 		ImportandWord = findImportantWord(entitie)
 		return 'そうなんですね' + ImportandWord.name + 'ってどんなことですか'
