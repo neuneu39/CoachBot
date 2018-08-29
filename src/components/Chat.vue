@@ -5,7 +5,7 @@
     </div>
   <!-- <v-layout justify-space-around column fill-height> -->
   <v-layout align-space-around column >
-    <v-layout justify-center row fill-height>
+    <!-- <v-layout justify-center row fill-height>
         <v-btn
                 large
                 @click="setNMode()"
@@ -19,7 +19,8 @@
         >
         R-Mode
         </v-btn>
-    </v-layout>
+    </v-layout> -->
+    <Mode/>
     <v-parallax
                 height="350"
                 dark
@@ -29,7 +30,7 @@
         <div v-for="text of answerText" v-bind:key="text.id" class="output-message" v-chat-scroll>
           <div v-if=text.botFlag class="bot-message">
             <div class="faceicon">
-              <img src="../assets/logo.png">
+              <img src="../assets/FaceFree.png">
             </div>
             <div class="chatting">
               <div class="says">
@@ -60,11 +61,17 @@
 </template>
 <script>
 import apiService from '../api-service'
+import Mode from './Mode'
+import store from '@/store.js'
 const normalMessage = 'なにか入力してください！'
+const firstMessage = '今日はどんなことがありました？'
 const NMODE = 1
-const RMODE = 2
+// const RMODE = 2
 export default {
   name: 'Chat',
+  components: {
+    Mode
+  },
   data () {
     return {
       messageText: '',
@@ -76,10 +83,12 @@ export default {
   },
   methods: {
     sendMessage: function () {
+      console.log('chatmode=', this.chatMode, store.state.chatMode)
       this.resetErrorMessage()
       if (this.messageText !== '') {
         this.answerText.push(this.setMessage(this.ids++, this.messageText, false))
-        apiService.postMessage(this.messageText, this.chatMode)
+        apiService.postMessage(this.messageText, store.state.chatMode)
+        // apiService.postMessage(this.messageText, this.chatMode)
           .then(json => {
             this.answerText.push(this.setMessage(this.ids++, json.message))
           })
@@ -89,7 +98,12 @@ export default {
             this.setErrorMessage(eMessage)
           })
       } else {
-        this.answerText.push(this.setMessage(this.ids++, normalMessage))
+        if (this.ids === 0) {
+          this.answerText.push(this.setMessage(this.ids++, firstMessage))
+        } else {
+          console.log('answerText=', this.answerText)
+          this.answerText.push(this.setMessage(this.ids++, normalMessage))
+        }
       }
     },
     setMessage: function (idNum, text, flag = true) {
@@ -100,7 +114,8 @@ export default {
         id: idNum,
         message: text,
         botFlag: flag,
-        mode: this.chatMode
+        // mode: this.chatMode
+        mode: store.state.chatMode
       }
     },
     setErrorMessage: function (eMessage) {
@@ -111,17 +126,22 @@ export default {
     },
     resetTextAreaMessage: function () {
       this.messageText = ''
-    },
-    setMode: function (mode) {
-      this.chatMode = mode
-      console.log(mode)
-    },
-    setNMode: function () {
-      this.setMode(NMODE)
-    },
-    setRMode: function () {
-      this.setMode(RMODE)
     }
+    // ,
+    // setMode: function (mode) {
+    //   this.chatMode = mode
+    //   console.log(mode)
+    // },
+    // setNMode: function () {
+    //   this.setMode(NMODE)
+    // },
+    // setRMode: function () {
+    //   this.setMode(RMODE)
+    // }
+  },
+  mounted: function () {
+    // 初期のメッセージ
+    this.sendMessage()
   }
 }
 </script>

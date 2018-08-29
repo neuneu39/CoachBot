@@ -6,7 +6,10 @@ import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import VueChatScroll from 'vue-chat-scroll'
+import Vuex from 'vuex'
+import store from './store.js'
 
+Vue.use(Vuex)
 Vue.use(VueChatScroll)
 Vue.use(Vuetify, {
   iconfont: 'mdi' // 'md' || 'mdi' || 'fa' || 'fa4'
@@ -17,6 +20,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
