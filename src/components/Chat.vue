@@ -20,7 +20,7 @@
         R-Mode
         </v-btn>
     </v-layout> -->
-    <Mode/>
+    <!-- <Mode/> -->
     <v-parallax
                 height="350"
                 dark
@@ -63,7 +63,7 @@
 import apiService from '../api-service'
 import Mode from './Mode'
 import store from '@/store.js'
-const normalMessage = 'なにか入力してください！'
+const normalMessage = 'なにか入力してね〜'
 const firstMessage = '今日はどんなことがありました？'
 const NMODE = 1
 // const RMODE = 2

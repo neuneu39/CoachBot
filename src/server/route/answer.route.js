@@ -80,9 +80,14 @@ function makeResponseWord(dataJson, req, res) {
     return 'はい'
 	} else if (sen_magnitude > 0.1 && sen_score < -0.3) {
 		ImportandWord = findImportantWord(entitie)
-		return 'そうなんですね' + ImportandWord.name + 'ってどんなことですか'
+		return 'そうなんですね' + ImportandWord.name + 'ってどんなかんじですか'
 	} else {
-    return ImportandWord
+    if (Math.random() > 0.7) {
+      ImportandWord = 'うん'
+      return ImportandWord
+    } else {
+      return ImportandWord
+    }
 	}
 }
 

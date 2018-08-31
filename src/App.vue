@@ -26,7 +26,14 @@
             <v-layout row wrap>
               <v-flex d-flex sm12>
                 <v-card color="indigo" dark>
-                  <v-card-text>Character</v-card-text>
+                  <v-card-text>
+                    <div>
+                      Coachbot
+                    </div>
+                    <div style="margin: 0 auto; text-align:center;">
+                      <img src="./assets/FaceFree.png">
+                    </div>
+                   </v-card-text>
                 </v-card>
               </v-flex>
               <v-flex d-flex sm12>
@@ -46,7 +53,7 @@
           </v-flex>
           <v-flex d-flex xs12 sm6 md8>
             <v-card color="blue-grey lighten-3">
-              <v-card-title primary class="title">Chat</v-card-title>
+              <v-card-title primary class="title"></v-card-title>
                 <v-card-text>
                   <v-layout
                             justify-center
@@ -63,7 +70,7 @@
     </v-container>
     <v-footer color="indigo" app>
       <v-layout align-center justify-center column fill-height>
-        <span class="white--text">&copy; 2018</span>
+        <span class="white--text">&copy; 2018 CoachBot</span>
       </v-layout>
     </v-footer>
   </v-app>

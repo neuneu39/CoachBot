@@ -13,13 +13,13 @@
         >
         R-Mode
         </v-btn>
-        <v-btn
+        <!-- <v-btn
                 large
                 color="primary"
                 @click="countup"
         >
         Countup {{ $store.state.count }}
-        </v-btn>
+        </v-btn> -->
     </v-layout>
 </template>
 <script>

@@ -16,10 +16,21 @@
 			<v-list-tile-action>
 			<!-- <v-icon>contact_mail</v-icon> -->
 			</v-list-tile-action>
+				<router-link to="/">			
 			<v-list-tile-content>
-				<v-list-tile-title>Contact</v-list-tile-title>
+				<v-list-tile-title>Profile</v-list-tile-title>
 			</v-list-tile-content>
+				</router-link>	
 		</v-list-tile>
+		<v-list-tile>
+			<v-list-tile-action>
+			</v-list-tile-action>
+				<router-link to="/">			
+			<v-list-tile-content>
+				<v-list-tile-title>Help</v-list-tile-title>
+			</v-list-tile-content>
+				</router-link>
+		</v-list-tile>		
 	</v-list>
 </div>
 </template>
